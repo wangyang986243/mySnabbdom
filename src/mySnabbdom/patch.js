@@ -3,7 +3,7 @@
  * @Author: wangyang
  * @Date: 2022-03-19 20:33:21
  * @LastEditors: wangyang
- * @LastEditTime: 2022-03-19 20:57:54
+ * @LastEditTime: 2022-03-20 13:08:46
  */
 import vNode from './vNode'
 import createElement from './createElement'
@@ -18,10 +18,12 @@ export default function (oldVnode, newVnode) {
     if (oldVnode.sel == newVnode.sel && oldVnode.key == newVnode.key) {
         //新老节点相同 
         console.log('新老节点相同')
-
     } else {
         //新老节点不相同
         console.log('新老节点不相同')
-        createElement(newVnode, oldVnode.elm)
+        //获取新虚拟节点的DOM 
+        let newVnodeElm = createElement(newVnode)
+        //让新虚拟节点的DOM上树 newVnodeElm:新虚拟节点的DOM 
+        oldVnode.elm.parentNode.insertBefore(newVnodeElm, oldVnode.elm)
     }
 }
