@@ -3,23 +3,25 @@
  * @Author: wangyang
  * @Date: 2022-03-19 15:29:32
  * @LastEditors: wangyang
- * @LastEditTime: 2022-03-20 13:09:35
+ * @LastEditTime: 2022-03-20 16:09:29
  */
 import h from './mySnabbdom/h'
 import patch from './mySnabbdom/patch'
-// var myVNode = h('div', {}, '盒子')
-var myVNode = h('ul', {}, [
-    h('li', {}, '1'),
-    h('li', {}, '2'),
-    h('li', {}, [
-        h('span', {}, 's1'),
-        h('span', {}, 's2'),
-    ]),
-])
-// var myVNode3 = h('ul', {}, h('li', {}, '1'))
-// console.log(myVNode1)
-// console.log(myVNode2)
-// console.log(myVNode3)
-// var myVnode = h('h', {}, '这是新节点')
+// var myVNode1 = h('section', {}, [
+//     h('p', {}, 'A'),
+//     h('p', {}, 'B'),
+//     h('p', {}, 'C'),
+// ])
+var myVNode1 = h('section', {}, '我是一个文字')
 var container = document.getElementById('container')
-patch(container, myVNode)
+const btn = document.getElementById('btn')
+patch(container, myVNode1)
+
+const myVNode2 = h('section', {}, [
+    h('p', {}, 'A'),
+    h('p', {}, 'B'),
+    h('p', {}, [h('span', {}, '22')]),
+])
+btn.onclick = function () {
+    patch(myVNode1, myVNode2)
+}
