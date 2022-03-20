@@ -3,24 +3,26 @@
  * @Author: wangyang
  * @Date: 2022-03-19 15:29:32
  * @LastEditors: wangyang
- * @LastEditTime: 2022-03-20 16:09:29
+ * @LastEditTime: 2022-03-20 21:54:22
  */
 import h from './mySnabbdom/h'
 import patch from './mySnabbdom/patch'
-// var myVNode1 = h('section', {}, [
-//     h('p', {}, 'A'),
-//     h('p', {}, 'B'),
-//     h('p', {}, 'C'),
-// ])
-var myVNode1 = h('section', {}, '我是一个文字')
+var myVNode1 = h('section', {}, [
+    h('p', { key: "A" }, 'A'),
+    h('p', { key: "B" }, 'B'),
+    h('p', { key: "C" }, 'C'),
+])
 var container = document.getElementById('container')
 const btn = document.getElementById('btn')
 patch(container, myVNode1)
 
-const myVNode2 = h('section', {}, [
-    h('p', {}, 'A'),
-    h('p', {}, 'B'),
-    h('p', {}, [h('span', {}, '22')]),
+var myVNode2 = h('section', {}, [
+
+    h('p', { key: "C" }, 'C'),
+    h('p', { key: "B" }, 'B'),
+    h('p', { key: "A" }, 'A'),
+
+
 ])
 btn.onclick = function () {
     patch(myVNode1, myVNode2)
